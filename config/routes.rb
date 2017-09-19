@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: {sessions: "users/sessions", registrations: "users/registrations", passwords: "users/passwords"}
+  devise_for :users, controllers: {sessions: "users/sessions", registrations: "users/registrations", passwords: "users/passwords", :omniauth_callbacks => "users/omniauth_callbacks"}
   root 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -18,6 +18,10 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
+
+  devise_scope :user do
+    post 'social_info'=> 'users/omniauth_callbacks#social_info'
+  end
 
   # Example resource route with options:
   #   resources :products do

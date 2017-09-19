@@ -47,3 +47,8 @@ end
 
 gem 'devise'
 gem 'twitter-bootstrap-rails'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-linkedin'
+gem 'omniauth-twitter'
+gem "omniauth-google-oauth2"
