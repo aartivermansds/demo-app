@@ -1,0 +1,47 @@
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <h4 class="modal-container" id="myModalLabel">Sign in Form</h4>
+    </div>
+  <div class="col-xs-8 col-sm-4"><button id="btn-fbsignup" type="button" class="btn btn-primary"><i class="icon-facebook"></i>Facebook</button>
+  </div>                                                                        
+  <div class="col-xs-8 col-sm-4"><button id="btn-googlesignup" type="button" class="btn btn-danger"><i class="icon-google"></i>    Google+</button>
+  </div>                                           
+
+  <div class="col-xs-8 col-sm-4"><button id="btn-twittersignup" type=" button" class="btn btn-info"><i class="icon-google"></i>Twitter</button>
+  </div>                                          
+    <div class="modal-body">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+       <div class="form-group col-md-10">
+        <label for="inputEmail4" class="col-form-label">Email</label>
+       <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+    
+    </div>
+    <div class="form-group col-md-10">
+      <label for="inputPassword4" class="col-form-label">Password</label>
+      <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+    </div>
+
+        <% if devise_mapping.rememberable? -%>
+        <div class="form-group col-lg-4">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+        <% end -%>
+
+ <div class="actions">
+  <button class="btn btn-sm btn-primary btn-block" type="submit">Login</button>
+</div>
+
+ <% end %>
+  
+        <%= render "users/shared/links" %>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+    </div>
+  </div>
+</div>
+
+
