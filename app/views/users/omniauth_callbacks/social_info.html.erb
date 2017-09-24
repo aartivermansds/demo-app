@@ -1,0 +1,8 @@
+<div class="container">
+  <%= form_for :social_info, :url => social_info_path do |f| %>
+    <div class="form-group">
+      <%= f.email_field :email, required: true, autofocus: true, class:"form-control form-control-solid placeholder-no-fix", autocomplete: "off", placeholder:"Email" %>
+    </div>
+    <%= f.submit "Submit" %>
+  <% end %>
+</div>

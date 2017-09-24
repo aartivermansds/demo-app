@@ -42,6 +42,7 @@ Devise.setup do |config|
   # if you set :request_keys to [:subdomain], :subdomain will be used on authentication.
   # The same considerations mentioned for authentication_keys also apply to request_keys.
   # config.request_keys = []
+  config.omniauth :facebook, "525027654507380", "fdde1e42d88143c76589cd2bf05a0b6c"
 
   # Configure which authentication keys should be case-insensitive.
   # These keys will be downcased upon creating or modifying a user and when used
@@ -275,8 +276,10 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 
-  config.omniauth :facebook, "525027654507380", "f3d2384ce4222dbb4d0c5e10760718eb", callback_url: "http://localhost:3000/users/auth/facebook/callback", :scope => "email"
-  config.omniauth :google_oauth2, "759434225907-04hcojlsihss5mjlk2eu1tqiur7e2gjo.apps.googleusercontent.com", "KAkmWYyBROl8g8hPu14AjY6R", callback_url: "http://localhost:3000/users/auth/google_oauth2/callback"
-  config.omniauth :twitter, "1gBmPlaUimL2JsCq1Jdynujlo", "yBPUmHQAnGwp2vYZMtzTKhKeK2YgaBOV0wXaf2DtJuBmvG4E83", callback_url: "http://localhost:3000/users/auth/twitter/callback"
-  config.omniauth :linkedin, "75yzkx4f57s228", "a7sicb2HJ07mmR68", callback_url: "http://localhost:3000/users/auth/linkedin/callback", :scope => 'r_basicprofile r_emailaddress'
+  config.omniauth :facebook, "525027654507380", "fdde1e42d88143c76589cd2bf05a0b6c", callback_url: "http://localhost:3000/users/auth/facebook/callback", :scope => "email"
+  # config.omniauth :google_oauth2, "668822697097-7es8vufs2g7ri241oc69bsqdoh87eucp.apps.googleusercontent.com","6DelvfQqwO8LWeAyarJuhiYI", callback_url: "https://localhost:3000/users/auth/google_oauth2/callback"
+
+config.omniauth :google_oauth2, "759434225907-04hcojlsihss5mjlk2eu1tqiur7e2gjo.apps.googleusercontent.com", "KAkmWYyBROl8g8hPu14AjY6R", callback_url: "http://localhost:3000/users/auth/google_oauth2/callback"
+config.omniauth :twitter, "1gBmPlaUimL2JsCq1Jdynujlo", "yBPUmHQAnGwp2vYZMtzTKhKeK2YgaBOV0wXaf2DtJuBmvG4E83", callback_url: "http://localhost:3000/users/auth/twitter/callback"
+ config.omniauth :linkedin, "75yzkx4f57s228", "a7sicb2HJ07mmR68", callback_url: "http://localhost:3000/users/auth/linkedin/callback", :scope => 'r_basicprofile r_emailaddress'
 end
