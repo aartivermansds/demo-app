@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  resources :course_registrations
+  resources :charges, only: [:new, :create]
+  resources :courses do 
+    collection do 
+      get :new_course_enrollment
+      post :create_course_enrollment
+    end
+  end
   devise_for :users, controllers: {sessions: "users/sessions", registrations: "users/registrations", passwords: "users/passwords", :omniauth_callbacks => "users/omniauth_callbacks"}
   root 'home#index'
 

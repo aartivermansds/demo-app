@@ -11,7 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170919060230) do
+ActiveRecord::Schema.define(version: 20170927073042) do
+
+  create_table "charges", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "course_registrations", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "contact"
+    t.integer  "course_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "stripe_token"
+    t.string   "stripe_token_type"
+  end
+
+  add_index "course_registrations", ["course_id"], name: "index_course_registrations_on_course_id"
+
+  create_table "courses", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "course_fee"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

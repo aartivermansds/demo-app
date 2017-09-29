@@ -1,0 +1,32 @@
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+    </div>
+    <div class="modal-body">
+      <%= form_for :create_course_enrollment, url: :create_course_enrollment_courses, method: "post" do |f| %>
+       <%= f.hidden_field :course_id, :value => @course.id %>
+        <div class="field">
+          <%= f.label :first_name %><br>
+          <%= f.text_field :first_name %>
+        </div>
+        <div class="field">
+          <%= f.label :last_name %><br>
+          <%= f.text_field :last_name %>
+        </div>
+        <div class="field">
+          <%= f.label :contact %><br>
+          <%= f.text_field :contact %>
+        </div>
+
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="<%= Rails.application.secrets.stripe_publishable_key %>"
+        data-description="subscription for <%= @course.name %>"
+        data-amount="<%= @course.course_fee %>"
+        data-locale="auto"></script>
+      <% end %>
+
+    </div>
+  </div>
+</div>
