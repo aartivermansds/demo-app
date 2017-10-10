@@ -32,6 +32,10 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.save
+        stripe = StripeIntegrationClass.new
+        product = stripe.create_stripe_product(@course.name, @course.course_fee)
+        @course.update(stripe_product_id: product.id )
+        puts product
         format.html { redirect_to @course, notice: 'Course was successfully created.' }
         format.json { render :show, status: :created, location: @course }
       else
@@ -46,6 +50,8 @@ class CoursesController < ApplicationController
   def update
     respond_to do |format|
       if @course.update(course_params)
+        stripe = StripeIntegrationClass.new
+        pr = stripe.update_stripe_product(@course.stripe_product_id, @course.name)
         format.html { redirect_to @course, notice: 'Course was successfully updated.' }
         format.json { render :show, status: :ok, location: @course }
       else
@@ -58,6 +64,8 @@ class CoursesController < ApplicationController
   # DELETE /courses/1
   # DELETE /courses/1.json
   def destroy
+    stripe = StripeIntegrationClass.new
+    stripe.destroy_stripe_product(@course.stripe_product_id)
     @course.destroy
     respond_to do |format|
       format.html { redirect_to courses_url, notice: 'Course was successfully destroyed.' }
@@ -76,7 +84,13 @@ class CoursesController < ApplicationController
     @enrollment = CourseRegistration.new(enrollment_params)
     @enrollment.save
     @enrollment.update_attributes(:stripe_token => params[:stripeToken], :stripe_token_type => params[:stripeTokenType], :email => params[:stripeEmail])
-    redirect_to root_path
+    stripe = StripeIntegrationClass.new
+    customer = stripe.create_stripe_customer(params[:stripeToken],params[:stripeEmail])
+    c = stripe.retrieve_customer_stripe(customer.id)
+    cu = stripe.list_customer_stripe()
+    Customer.create(stripe_customer_email: customer.email, stripe_customer_id: customer.id)
+    puts c
+  redirect_to root_path
   end
 
   private

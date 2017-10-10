@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170927073042) do
+ActiveRecord::Schema.define(version: 20171010101242) do
 
   create_table "charges", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -35,8 +35,16 @@ ActiveRecord::Schema.define(version: 20170927073042) do
   create_table "courses", force: :cascade do |t|
     t.string   "name"
     t.integer  "course_fee"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "stripe_product_id"
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string   "stripe_customer_id"
+    t.string   "stripe_customer_email"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "users", force: :cascade do |t|
